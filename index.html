@@ -4,7 +4,182 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Marisel Bot Interface</title>
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== BASE LAYOUT ===== */
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #e0e0e0;
+      background: #0a0a0a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      width: 92%;
+      max-width: 480px;
+      padding: 2rem;
+      background: rgba(18, 18, 24, 0.85);
+      border-radius: 14px;
+      border: 1px solid rgba(0, 230, 180, 0.35);
+      box-shadow: 
+        0 0 12px rgba(0, 200, 160, 0.2),
+        0 0 3px rgba(0, 0, 0, 0.3) inset;
+      backdrop-filter: blur(10px);
+      margin: 1.2rem;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #00e6c3;
+      text-shadow: 0 0 12px rgba(0, 230, 180, 0.4);
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      margin-bottom: 1.8rem;
+      color: rgba(220, 220, 220, 0.85);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    /* ===== BUTTON STYLES ===== */
+    button {
+      width: 100%;
+      padding: 14px;
+      margin: 0.45rem 0;
+      background: rgba(10, 15, 20, 0.45);
+      border: 1.2px solid rgba(0, 210, 170, 0.5);
+      border-radius: 8px;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+      outline: none;
+    }
+
+    button:hover {
+      background: rgba(0, 180, 140, 0.15);
+      border-color: rgba(0, 230, 180, 0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 200, 160, 0.2);
+    }
+
+    button:active {
+      transform: translateY(0);
+      transition-duration: 0.1s;
+    }
+
+    /* ===== DIGITAL CLOCK ===== */
+    .digital-clock {
+      margin-top: 1.8rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.12rem;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .digital-clock span {
+      padding: 0.15rem;
+      line-height: 1;
+    }
+
+    #hours, #minutes {
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: rgba(30, 35, 40, 0.45);
+      border-radius: 5px;
+      padding: 0.25rem 0.4rem;
+      min-width: 1.8em;
+      text-align: center;
+    }
+
+    #seconds {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #00ffcc;
+      text-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+      background: rgba(0, 25, 20, 0.4);
+      border-radius: 5px;
+      padding: 0.25rem 0.3rem;
+      min-width: 1.8em;
+      text-align: center;
+    }
+
+    .colon {
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: rgba(180, 180, 180, 0.7);
+      padding: 0 0.1rem;
+      align-self: center;
+    }
+
+    #ampm {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: rgba(180, 180, 180, 0.9);
+      margin-left: 0.6rem;
+      align-self: flex-end;
+      margin-bottom: 0.45rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== TIME FORMAT TOGGLE ===== */
+    .format-toggle {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 1rem;
+    }
+
+    .format-btn {
+      width: auto;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+
+    .format-btn.active {
+      background: rgba(0, 180, 140, 0.3);
+      border-color: #00e6c3;
+    }
+
+    /* ===== RESPONSIVE ADJUSTMENTS ===== */
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.6rem;
+        border-radius: 12px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .digital-clock span {
+        font-size: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -14,17 +189,95 @@
     <!-- Action Buttons -->
     <button onclick="window.open('https://chat.whatsapp.com/CRmhHlDBfdTHLnMqlIfHGK', '_blank')">Join Group Chat</button>
     <button onclick="window.open('https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x', '_blank')">Follow Channel</button>
-    <button onclick="window.open('https://youtube.com/@wemacomic', '_blank')">YouTube</button>
-    <button onclick="window.open('https://wa.me/254740007567', '_blank')">Support Dev</button>
-    <button onclick="shareToFriend()">Share</button>
+    <button onclick="window.open('https://youtube.com/@wemacomic', '_blank')">Subscribe to YouTube</button>
+    <button onclick="window.open('https://wa.me/254740007567', '_blank')">Support Developer</button>
+    <button onclick="shareToFriend()">Share with Friends</button>
 
     <!-- Digital Clock -->
     <div class="digital-clock">
-      <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+      <span id="hours">00</span><span class="colon">:</span><span id="minutes">00</span><span class="colon">:</span><span id="seconds">00</span>
       <span id="ampm">AM</span>
+    </div>
+
+    <!-- Time Format Toggle -->
+    <div class="format-toggle">
+      <button id="12hrBtn" class="format-btn active" onclick="setTimeFormat(12)">12-Hour</button>
+      <button id="24hrBtn" class="format-btn" onclick="setTimeFormat(24)">24-Hour</button>
     </div>
   </div>
 
-  <script src="js/script.js"></script>
+  <script>
+    let timeFormat = 12; // Default to 12-hour format
+
+    // Digital Clock Function
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      let ampm = '';
+
+      if (timeFormat === 12) {
+        ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // Convert 0 to 12
+      } else {
+        // 24-hour format
+        ampm = '';
+      }
+
+      // Update the DOM
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+      document.getElementById('ampm').textContent = ampm;
+    }
+
+    // Set time format (12 or 24 hour)
+    function setTimeFormat(format) {
+      timeFormat = format;
+      document.getElementById('12hrBtn').classList.toggle('active', format === 12);
+      document.getElementById('24hrBtn').classList.toggle('active', format === 24);
+      updateClock();
+    }
+
+    // Initialize clock and update every second
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Share Function
+    function shareToFriend() {
+      const shareText = "Check out Marisel Bot! Join the channel here:\nhttps://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x";
+      if (navigator.share) {
+        navigator.share({
+          title: 'Marisel Bot',
+          text: shareText,
+          url: 'https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x'
+        }).catch(err => {
+          console.log('Error sharing:', err);
+          fallbackShare(shareText);
+        });
+      } else {
+        fallbackShare(shareText);
+      }
+    }
+
+    function fallbackShare(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      document.body.appendChild(textarea);
+      textarea.select();
+      
+      try {
+        document.execCommand('copy');
+        alert('Link copied to clipboard!');
+      } catch (err) {
+        prompt('Copy this link to share:', text);
+      }
+      
+      document.body.removeChild(textarea);
+    }
+  </script>
 </body>
-</html>
+        </html>
