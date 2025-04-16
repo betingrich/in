@@ -1,74 +1,155 @@
-/* ===== BASE RESET ===== */
+/* ===== GLOBAL STYLES ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== CORE LAYOUT ===== */
+/* ===== BASE LAYOUT ===== */
 body, html {
   width: 100%;
   height: 100%;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   color: #e0e0e0;
-  overflow: hidden;
+  background: #0a0a0a;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
+  overflow: hidden;
 }
 
-/* ===== TRANSPARENT CENTERED CONTAINER ===== */
+/* ===== MAIN CONTAINER ===== */
 .container {
-  width: 90%;
-  max-width: 500px;
-  padding: 2.5rem;
-  text-align: center;
-  background: rgba(10, 10, 20, 0.3);
-  border-radius: 16px;
-  border: 1px solid rgba(0, 255, 204, 0.7);
-  box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-  backdrop-filter: blur(5px);
-  margin: 1rem;
+  width: 92%;
+  max-width: 480px;
+  padding: 2rem;
+  background: rgba(18, 18, 24, 0.85);
+  border-radius: 14px;
+  border: 1px solid rgba(0, 230, 180, 0.35);
+  box-shadow: 
+    0 0 12px rgba(0, 200, 160, 0.2),
+    0 0 3px rgba(0, 0, 0, 0.3) inset;
+  backdrop-filter: blur(10px);
+  margin: 1.2rem;
 }
 
 /* ===== TYPOGRAPHY ===== */
 h1 {
-  font-size: 2.2rem;
-  margin: 0 0 0.5rem 0;
-  color: #00ffcc;
-  text-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-  letter-spacing: 1px;
+  font-size: 2.3rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #00e6c3;
+  text-shadow: 0 0 12px rgba(0, 230, 180, 0.4);
+  letter-spacing: 0.5px;
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.05rem;
+  margin-bottom: 1.8rem;
+  color: rgba(220, 220, 220, 0.85);
+  font-weight: 400;
+  line-height: 1.4;
 }
 
-/* ===== BUTTONS ===== */
+/* ===== BUTTON STYLES ===== */
 button {
   width: 100%;
-  padding: 15px;
-  margin: 0.5rem 0;
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid #00ffcc;
-  border-radius: 10px;
-  color: white;
+  padding: 14px;
+  margin: 0.45rem 0;
+  background: rgba(10, 15, 20, 0.45);
+  border: 1.2px solid rgba(0, 210, 170, 0.5);
+  border-radius: 8px;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', sans-serif;
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  outline: none;
 }
 
 button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(0, 180, 140, 0.15);
+  border-color: rgba(0, 230, 180, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 200, 160, 0.2);
 }
 
-#clock {
-  margin-top: 2rem;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.8);
+button:active {
+  transform: translateY(0);
+  transition-duration: 0.1s;
+}
+
+/* ===== DIGITAL CLOCK ===== */
+.digital-clock {
+  margin-top: 1.8rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.12rem;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.digital-clock span {
+  padding: 0.15rem;
+  line-height: 1;
+}
+
+#hours, #minutes {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(30, 35, 40, 0.45);
+  border-radius: 5px;
+  padding: 0.25rem 0.4rem;
+  min-width: 1.8em;
+  text-align: center;
+}
+
+#seconds {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #00ffcc;
+  text-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+  background: rgba(0, 25, 20, 0.4);
+  border-radius: 5px;
+  padding: 0.25rem 0.3rem;
+  min-width: 1.8em;
+  text-align: center;
+}
+
+.colon {
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: rgba(180, 180, 180, 0.7);
+  padding: 0 0.1rem;
+  align-self: center;
+}
+
+#ampm {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: rgba(180, 180, 180, 0.9);
+  margin-left: 0.6rem;
+  align-self: flex-end;
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.5px;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.6rem;
+    border-radius: 12px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .digital-clock span {
+    font-size: 90%;
+  }
 }
